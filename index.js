@@ -5,10 +5,11 @@ const mongoose = require("mongoose");
 const port = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
+require("dotenv").config();
 
 mongoose
     .connect(
-        "mongodb+srv://winbazz:12345@cluster0.h0ut9p8.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0", { useNewUrlParser: true, useUnifiedTopology: true }
+        `mongodb+srv://${process.env.Db_User}:${process.env.Db_Pass}@cluster0.h0ut9p8.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`, { useNewUrlParser: true, useUnifiedTopology: true }
     )
     .then(() => {
         console.log("mongoose connected successfully");
