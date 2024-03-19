@@ -3,6 +3,7 @@ const User = require("../Models/Users")
 const createUser = async (req, res) => {
     try {
         const userData = req.body ;
+        console.log("User Data", userData)
         const newUser = new User(userData);
         const savedUser = await newUser.save();
         res.status(201).json(savedUser)

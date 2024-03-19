@@ -9,7 +9,11 @@ const userSchema = new Schema({
         default : "user"
     },
     refered : {
-        type : Boolean , default : false
+        type : String , default : "No refer !!"
+    }, 
+    credit : {
+        type : Number,
+        default : 0.00,
     }
 })
 
