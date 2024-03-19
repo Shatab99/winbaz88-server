@@ -14,6 +14,9 @@ const userSchema = new Schema({
     credit : {
         type : Number,
         default : 0.00,
+    },
+    phone : {
+        type : Number , default : null 
     }
 })
 

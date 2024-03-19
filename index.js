@@ -32,6 +32,8 @@ app.get('/', (req, res) => {
 // All Routes here 
 
 const userRoute = require('./Api/Routes/userRoute');
+const depositRoute = require('./Api/Routes/depositRoute')
 
 
 app.use("/", userRoute)
+app.use("/", depositRoute)
