@@ -36,22 +36,39 @@ const getUserByEmail = async (req, res) => {
 
 const upadateCred = async (req, res) => {
     try {
-        const email= req.params.email;
+        const email = req.params.email;
         const credString = req.body;
         const cred = parseInt(credString.amount)
         console.log(credString)
-        console.log(typeof(cred))
-        const oldCred = await User.findOne({email : email})
-        console.log(typeof(oldCred.credit))
-        const upadateCred = await User.findOneAndUpdate({email : email} , {
-            $set : { credit : oldCred.credit + cred}
-        } , {new : true} )
+        console.log(typeof (cred))
+        const oldCred = await User.findOne({ email: email })
+        console.log(typeof (oldCred.credit))
+        const upadateCred = await User.findOneAndUpdate({ email: email }, {
+            $set: { credit: oldCred.credit + cred }
+        }, { new: true })
         res.json(upadateCred)
     }
     catch (err) {
         console.log(err)
     }
 }
+
+const withdrawCred = async (req, res) => {
+    try {
+        const email = req.params.email;
+        const credString = req.body;
+        const cred = parseInt(credString.amount);
+        const oldCred = await User.findOne({email : email})
+        const updateCred = await User.findOneAndUpdate({email : email} , {
+            $set : {credit : oldCred.credit - cred} 
+        }, {new : true})
+        res.json(updateCred)
+    }
+    catch (err) {
+        console.log(err)
+    }
+}
+
 
 const deleteUser = async (req, res) => {
     try {
@@ -66,5 +83,5 @@ const deleteUser = async (req, res) => {
 
 
 module.exports = {
-    createUser, getAllUser, deleteUser, getUserByEmail,upadateCred
+    createUser, getAllUser, deleteUser, getUserByEmail, upadateCred, withdrawCred
 }

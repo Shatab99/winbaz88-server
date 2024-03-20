@@ -2,7 +2,16 @@ const Deposit = require("../Models/DepositSchema")
 
 const getAllDeposit = async (req, res) => {
     try {
-        const result = await Deposit.find()
+        const result = await Deposit.find({category: "Deposit"})
+        res.json(result)
+    }
+    catch (err) {
+        console.log(err)
+    }
+}
+const getAllWithdraw = async (req, res) => {
+    try {
+        const result = await Deposit.find({category: "Withdraw"})
         res.json(result)
     }
     catch (err) {
@@ -45,5 +54,5 @@ const deleteDeposit = async (req, res) => {
 }
 
 module.exports = {
-    submitDeposit, getAllDeposit, deleteDeposit, getDepositUser
+    submitDeposit, getAllDeposit, deleteDeposit, getDepositUser,getAllWithdraw
 }
