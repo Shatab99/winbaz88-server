@@ -23,6 +23,17 @@ const postHistory = async(req, res) => {
     }
 }
 
+const deleteHistory = async (req, res)=>{
+    try{
+        const id = req.params.id;
+        const result = await History.findByIdAndDelete(id)
+        res.json(result)
+    }
+    catch(err){
+        console.log(err)
+    }
+}
+
 module.exports = {
-    getHistoryUser, postHistory
+    getHistoryUser, postHistory, deleteHistory
 }
