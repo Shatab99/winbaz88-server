@@ -7,7 +7,9 @@ const DepositSchema = new Schema({
     phone : {type : String },
     transactionId : {type : String },
     amount : {type : Number },
-    method : {type : String }
+    method : {type : String },
+    status : {type : String, default : "Pending"},
+    category : {type : String, default : "Deposit"}
 }) 
 
 const Deposit = mongoose.model("Deposit", DepositSchema)

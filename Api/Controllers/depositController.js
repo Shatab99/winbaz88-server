@@ -9,6 +9,18 @@ const getAllDeposit = async (req, res) => {
         console.log(err)
     }
 }
+
+const getDepositUser = async (req, res) => {
+    try {
+        const email = req.params.email;
+        const result = await Deposit.find({email : email})
+        res.json(result)
+    }
+    catch (err) {
+        console.log(err)
+    }
+}
+
 const submitDeposit = async (req, res) => {
     try {
         const data = req.body;
@@ -33,5 +45,5 @@ const deleteDeposit = async (req, res) => {
 }
 
 module.exports = {
-    submitDeposit, getAllDeposit, deleteDeposit
+    submitDeposit, getAllDeposit, deleteDeposit, getDepositUser
 }

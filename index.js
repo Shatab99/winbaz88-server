@@ -33,7 +33,8 @@ app.get('/', (req, res) => {
 
 const userRoute = require('./Api/Routes/userRoute');
 const depositRoute = require('./Api/Routes/depositRoute')
-
+const historyRoute = require("./Api/Routes/historyRoute")
 
 app.use("/", userRoute)
 app.use("/", depositRoute)
+app.use("/", historyRoute)
