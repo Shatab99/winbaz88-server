@@ -34,7 +34,10 @@ app.get('/', (req, res) => {
 const userRoute = require('./Api/Routes/userRoute');
 const depositRoute = require('./Api/Routes/depositRoute')
 const historyRoute = require("./Api/Routes/historyRoute")
+const referRoute = require("./Api/Routes/referRoute")
 
 app.use("/", userRoute)
 app.use("/", depositRoute)
 app.use("/", historyRoute)
+app.use("/", referRoute)
+
