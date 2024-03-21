@@ -9,7 +9,8 @@ const historySchema = new Schema({
     amount: { type: Number },
     method: { type: String },
     status: { type: String },
-    category: { type: String, default: "Deposit" }
+    category: { type: String, default: "Deposit" },
+    confirm : {type : Boolean, default : true}
 })
 
 const History = mongoose.model("History", historySchema)

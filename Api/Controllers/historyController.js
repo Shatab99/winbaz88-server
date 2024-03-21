@@ -11,7 +11,7 @@ const getHistoryUser = async (req, res) => {
     }
 }
 
-const postHistory = async(req, res) => {
+const postHistory = async (req, res) => {
     try {
         const data = req.body;
         const newData = new History(data);
@@ -23,17 +23,28 @@ const postHistory = async(req, res) => {
     }
 }
 
-const deleteHistory = async (req, res)=>{
-    try{
+const deleteHistory = async (req, res) => {
+    try {
         const id = req.params.id;
         const result = await History.findByIdAndDelete(id)
         res.json(result)
     }
-    catch(err){
+    catch (err) {
+        console.log(err)
+    }
+}
+
+const clearAllHistory = async (req, res) => {
+    try {
+        const email = req.params.email;
+        const result = await History.deleteMany({email : email})
+        res.send(result)
+    }
+    catch (err) {
         console.log(err)
     }
 }
 
 module.exports = {
-    getHistoryUser, postHistory, deleteHistory
+    getHistoryUser, postHistory, deleteHistory, clearAllHistory
 }
