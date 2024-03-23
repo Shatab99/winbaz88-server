@@ -39,8 +39,7 @@ const upadateCred = async (req, res) => {
         const email = req.params.email;
         const credString = req.body;
         const cred = parseInt(credString.amount)
-        console.log(credString)
-        console.log(typeof (cred))
+        console.log("deposit",credString)
         const oldCred = await User.findOne({ email: email })
         console.log(typeof (oldCred.credit))
         const upadateCred = await User.findOneAndUpdate({ email: email }, {
@@ -57,6 +56,7 @@ const withdrawCred = async (req, res) => {
     try {
         const email = req.params.email;
         const credString = req.body;
+        console.log("Witdraw", credString)
         const cred = parseInt(credString.amount);
         const oldCred = await User.findOne({email : email})
         const updateCred = await User.findOneAndUpdate({email : email} , {
