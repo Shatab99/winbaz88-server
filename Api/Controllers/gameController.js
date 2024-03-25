@@ -37,6 +37,49 @@ const updateUserByWheel = async (req, res) => {
     }
 }
 
+
+const updateUserByAviator = async (req, res) => {
+    try {
+        const data = req.body;
+        console.log(data)
+        const { email, rbAmount, lbAmount, cashOutLb, cashOutRb } = data
+        const user = await Users.findOne({email : email})
+        const oldCred = user.credit;
+        console.log(oldCred)
+        if(cashOutLb === 0 && cashOutRb === 0){
+            const newCred = rbAmount+ lbAmount
+            const result = await Users.updateOne({email : email}, {
+                $set : {credit : oldCred - newCred }
+            })
+            res.json(result)
+        }
+        else if (cashOutLb !== 0 && cashOutRb !== 0){
+            const newCred = (rbAmount*cashOutRb) + (lbAmount * cashOutLb)
+            const result = await Users.updateOne({email : email},{
+                $set : {credit : oldCred + newCred}
+            } )
+            res.json(result)
+        }
+        else if (cashOutLb === 0 && cashOutRb !== 0){
+            const newCred = (cashOutRb * rbAmount) - lbAmount;
+            const result = await Users.updateOne({email : email}, {
+                $set : {credit : oldCred + newCred}
+            })
+            res.json(result)
+        }
+        else if (cashOutLb !== 0 && cashOutRb === 0){
+            const newCred = (cashOutLb * lbAmount) - rbAmount;
+            const result = await Users.updateOne({email : email}, {
+                $set : {credit : oldCred + newCred}
+            })
+            res.json(result)
+        }
+    }
+    catch (err) {
+        console.log(err)
+    }
+}
+
 module.exports = {
-    updateUserByWheel
+    updateUserByWheel, updateUserByAviator
 }
