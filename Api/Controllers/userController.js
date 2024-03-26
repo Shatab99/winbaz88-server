@@ -1,4 +1,5 @@
 const User = require("../Models/Users")
+const AdminPhone = require("../Models/AdminPhone")
 
 const createUser = async (req, res) => {
     try {
@@ -39,7 +40,7 @@ const upadateCred = async (req, res) => {
         const email = req.params.email;
         const credString = req.body;
         const cred = parseInt(credString.amount)
-        console.log("deposit",credString)
+        console.log("deposit", credString)
         const oldCred = await User.findOne({ email: email })
         console.log(typeof (oldCred.credit))
         const upadateCred = await User.findOneAndUpdate({ email: email }, {
@@ -58,10 +59,10 @@ const withdrawCred = async (req, res) => {
         const credString = req.body;
         console.log("Witdraw", credString)
         const cred = parseInt(credString.amount);
-        const oldCred = await User.findOne({email : email})
-        const updateCred = await User.findOneAndUpdate({email : email} , {
-            $set : {credit : oldCred.credit - cred} 
-        }, {new : true})
+        const oldCred = await User.findOne({ email: email })
+        const updateCred = await User.findOneAndUpdate({ email: email }, {
+            $set: { credit: oldCred.credit - cred }
+        }, { new: true })
         res.json(updateCred)
     }
     catch (err) {
@@ -81,7 +82,47 @@ const deleteUser = async (req, res) => {
     }
 }
 
+const updatePhone = async (req, res) => {
+    try {
+        const email = req.params.email;
+        const phone = req.body;
+        console.log(phone)
+        const result = await User.findOneAndUpdate({ email: email }, {
+            $set: { phone: phone }
+        }, { new: true })
+        res.json(result)
+    }
+    catch (err) {
+        console.log(err)
+    }
+}
+
+const getAdminPhone = async (req, res) => {
+    try {
+        const id = req.params.id
+        const result = await AdminPhone.findById(id)
+        res.json(result)
+    }
+    catch(err){
+        console.log(err)
+    }
+}
+
+const updateAdminPhone = async (req, res) => {
+    try {
+        const phone = req.body;
+        console.log(phone)
+        const result = await AdminPhone.updateMany({}, {
+            $set: { phone: phone.phone }
+        })
+        res.json(result)
+    }
+    catch (err) {
+        console.log(err)
+    }
+}
+
 
 module.exports = {
-    createUser, getAllUser, deleteUser, getUserByEmail, upadateCred, withdrawCred
+    createUser, getAllUser, deleteUser, getUserByEmail, upadateCred, withdrawCred, updatePhone, getAdminPhone, updateAdminPhone
 }

@@ -7,13 +7,6 @@ const postRefer = async (req, res) => {
         const refers = await Refer.find()
         const lastEmail = refers[refers.length - 1].referEmail
         console.log(lastEmail)
-        // const refer = users.map(user=>{
-        //     const referCode = user._id.toString().slice(0,7)
-        //     const referEmail = user.email
-        //     return {referEmail, referCode}
-        // })
-        // const result = await Refer.insertMany(refer)
-        // res.json(result)
         const referEmail = users[users.length - 1].email
         const referCode = users[users.length - 1]._id.toString().slice(0, 7)
         const refer = { referEmail, referCode }
@@ -35,9 +28,11 @@ const postRefer = async (req, res) => {
     }
 }
 
-const deleteAllRef = async (req, res) => {
+
+
+const getAllRefer = async (req, res) => {
     try {
-        const result = await Refer.deleteMany()
+        const result = await Refer.find()
         res.json(result)
     }
     catch (err) {
@@ -45,11 +40,18 @@ const deleteAllRef = async (req, res) => {
     }
 }
 
-const getAllRefer = async (req, res) => {
-    const result = await Refer.find()
-    res.json(result)
+const getReferedUsers = async (req, res) => {
+    try {
+        const referId = req.params.referId;
+        console.log(referId)
+        const result = await Users.find({refered : referId })
+        res.json(result)
+    }
+    catch (err) {
+        console.log(err)
+    }
 }
 
 module.exports = {
-    postRefer, getAllRefer, deleteAllRef
+    postRefer, getAllRefer,getReferedUsers
 }

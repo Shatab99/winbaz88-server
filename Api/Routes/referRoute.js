@@ -6,7 +6,7 @@ const Refer = require("../Controllers/referController")
 
 router.post('/postRefer', Refer.postRefer)
 router.get('/refers', Refer.getAllRefer)
-router.delete('/referdel', Refer.deleteAllRef)
+router.get('/refer/:referId', Refer.getReferedUsers)
 
 module.exports = router
 

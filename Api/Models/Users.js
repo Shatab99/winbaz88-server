@@ -16,7 +16,7 @@ const userSchema = new Schema({
         default : 0.00,
     },
     phone : {
-        type : Number , default : null 
+        type : String , default : null 
     }
 })
 
