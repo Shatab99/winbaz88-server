@@ -103,17 +103,60 @@ const getAdminPhone = async (req, res) => {
         const result = await AdminPhone.findById(id)
         res.json(result)
     }
-    catch(err){
+    catch (err) {
         console.log(err)
     }
 }
 
-const updateAdminPhone = async (req, res) => {
+const updateBksash = async (req, res) => {
     try {
         const phone = req.body;
+        if (!phone.phone) { return }
         console.log(phone)
         const result = await AdminPhone.updateMany({}, {
-            $set: { phone: phone.phone }
+            $set: { bkash: phone.phone }
+        })
+        res.json(result)
+    }
+    catch (err) {
+        console.log(err)
+    }
+}
+const updateNagad = async (req, res) => {
+    try {
+        const phone = req.body;
+        if (!phone.phone) { return }
+        console.log(phone)
+        const result = await AdminPhone.updateMany({}, {
+            $set: { nagad: phone.phone }
+        })
+        res.json(result)
+    }
+    catch (err) {
+        console.log(err)
+    }
+}
+const updateRocket = async (req, res) => {
+    try {
+        const phone = req.body;
+        if (!phone.phone) { return }
+        console.log(phone)
+        const result = await AdminPhone.updateMany({}, {
+            $set: { rocket: phone.phone }
+        })
+        res.json(result)
+    }
+    catch (err) {
+        console.log(err)
+    }
+}
+const updateUpay = async (req, res) => {
+    try {
+        const phone = req.body;
+        if (!phone.phone) { return }
+        console.log(phone)
+        const result = await AdminPhone.updateMany({}, {
+            $set: { upay: phone.phone }
         })
         res.json(result)
     }
@@ -124,5 +167,5 @@ const updateAdminPhone = async (req, res) => {
 
 
 module.exports = {
-    createUser, getAllUser, deleteUser, getUserByEmail, upadateCred, withdrawCred, updatePhone, getAdminPhone, updateAdminPhone
+    createUser, getAllUser, deleteUser, getUserByEmail, upadateCred, withdrawCred, updatePhone, getAdminPhone, updateBksash, updateNagad, updateRocket, updateUpay
 }

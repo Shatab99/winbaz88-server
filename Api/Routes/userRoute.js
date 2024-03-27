@@ -9,8 +9,11 @@ router.post('/user', userController.createUser)
 router.patch('/updateCred/:email', userController.upadateCred)
 router.patch('/withdrawCred/:email', userController.withdrawCred)
 router.patch('/updatePhone/:email', userController.updatePhone)
-router.patch('/updateAdminPhone', userController.updateAdminPhone)
 router.delete('/deleteUser/:id', userController.createUser)
+router.patch('/updateBkash', userController.updateBksash)
+router.patch('/updateNagad', userController.updateNagad)
+router.patch('/updateRocket', userController.updateRocket)
+router.patch('/updateUpay', userController.updateUpay)
 
 module.exports = router
 

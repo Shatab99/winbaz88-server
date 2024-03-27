@@ -2,7 +2,10 @@ const mongoose = require('mongoose');
 const {Schema} = mongoose
 
 const adminPhoneSchema = new Schema({
-    phone : String
+    bkash : String,
+    nagad : String,
+    upay : String,
+    rocket : String,
 })
 
 const AdminPhone = new mongoose.model("AdminPhoneNumber", adminPhoneSchema)
